@@ -1,0 +1,16 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Seoul
+      - PASSWORD=changeme        # 여기에 비밀번호 변경
+      - SUDO_PASSWORD=changeme   # 터미널 sudo 비밀번호 (동일하게)
+    volumes:
+      - ./code-server/config:/config
+      - ./projects:/home/coder/projects
+    ports:
+      - "8443:8443"
+    restart: unless-stopped
